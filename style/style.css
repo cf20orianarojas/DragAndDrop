@@ -1,0 +1,33 @@
+.drop-area{
+    border: 2pxdashed#ddd;
+    height: 300px;
+    width: 400px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+    
+.drop-area.active{
+    background-color: #ddd;
+    color: #000000;
+    border: 2pxdashedblue;
+}
+    
+.drop-areabutton{
+    background-color: blue;
+    color: #ffffff;
+    padding: 8px15px;
+    text-align:center;
+    border:0px;
+    border-radius: 4px;
+    cursor: pointer;
+    border:2pxsolidblue;
+}
+    
+.drop-areabutton:hover{
+    background-color: transparent;
+    color: blue;
+}    
