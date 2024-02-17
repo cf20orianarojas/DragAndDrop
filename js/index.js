@@ -1,4 +1,3 @@
-/*  */
 let files = [];
 
 const dropArea = document.querySelector('.drop-area');
@@ -35,13 +34,53 @@ dropArea.addEventListener("drop", (event) => {
 });
 
 function showFiles() {
-    if (files.length === undefined) return
-    files.forEach((file, index) => {
-        processFile(file, index);
-        console.log(file)
-    });
+    if (files.length > 0) {
+        files.forEach((file, index) => {
+            processFile(file, index);
+        });
+    }
 }
 
+let fileInPrevList = new Set(); // set que comprova que els noms de fitxers
+
 function processFile(file, index) {
-    const validExtensions = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+    const validExtensions = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+    const docType = file.type;
+
+    let extImatge = validExtensions.find(ext => ext == docType);
+
+    if (!extImatge) {
+        console.log(`El arxiu no és una imatge`);
+        files.splice(index, 1)
+    } else {
+        // control de fitxer duplicats
+        if (!fileInPrevList.has(file.name)) {
+            fileInPrevList.add(file.name);
+            // obj reader
+            let reader = new FileReader();
+            reader.addEventListener('load', () => { 
+                let fileURL = reader.result;
+                previewFile(file, fileURL, index);
+            });
+            reader.readAsDataURL(file);
+        }
+    }
+}
+
+// Funció que crea divs amb la previsualització de les imatges
+function previewFile(file, fileURL, index) {
+    let prev = `<div class="previewImage">
+                    <img src="${fileURL}"/>
+                    <span>${file.name}</span>
+                    <span onclick="removeBtn(${index})" class="material-symbols-outlined
+                    removeBtn">x</span>
+                </div>`;
+    preview.innerHTML += prev;
+}
+
+// Aquesta funció eliminarà de l’array l’arxiu de la posició i.
+function removeBtn(i) {
+    files.splice(i, 1);
+    document.querySelector(".previewImage").innerHTML = '';
+    showFiles();
 }
