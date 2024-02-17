@@ -81,7 +81,16 @@ function previewFile(file, fileURL, index) {
 // Aquesta funció eliminarà de l’array l’arxiu de la posició i.
 function removeBtn(i) {
     files.splice(i, 1);
-    document.querySelector(`#prevImg${i}`).innerHTML = '';
+    document.querySelector(`#prevImg${i}`).innerHTML="";
     showFiles();
 }
 
+button.addEventListener("click", (e) => {
+    e.preventDefault();
+    input.click();
+})
+
+input.addEventListener("change", (e) => { 
+    files = files.concat(Array.from(input.files));
+    showFiles();
+});
