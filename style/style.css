@@ -1,21 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-content: center;  
+    margin: 2em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
 .drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 2px dashed #ddd;
     height: 300px;
     width: 400px;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-
-    .previewImage {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
-        align-items: center;
-    }
-
-    align-items: center;
-    justify-content: center;
     margin-bottom: 25px;
 }
 
@@ -39,6 +39,14 @@
 .drop-area button:hover {
     background-color: transparent;
     color: blue;
+}
+
+.previewImage {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
 }
 
 .previewImage img {
