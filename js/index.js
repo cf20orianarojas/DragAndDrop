@@ -69,7 +69,7 @@ function processFile(file, index) {
 
 // Funció que crea divs amb la previsualització de les imatges
 function previewFile(file, fileURL, index) {
-    let prev = `<div class="previewImage">
+    let prev = `<div id="prevImg${index}" class="previewImage">
                     <img src="${fileURL}"/>
                     <span>${file.name}</span>
                     <span onclick="removeBtn(${index})" class="material-symbols-outlined
@@ -81,6 +81,7 @@ function previewFile(file, fileURL, index) {
 // Aquesta funció eliminarà de l’array l’arxiu de la posició i.
 function removeBtn(i) {
     files.splice(i, 1);
-    document.querySelector(".previewImage").innerHTML = '';
+    document.querySelector(`#prevImg${i}`).innerHTML = '';
     showFiles();
 }
+
