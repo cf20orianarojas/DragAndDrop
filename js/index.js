@@ -5,6 +5,7 @@ const dragDropText = document.querySelector('h2');
 const button = document.querySelector('button');
 const input = document.querySelector('#input-file');
 const preview = document.querySelector('#preview');
+const form = document.querySelector('#form');
 
 let evt = ["dragover", "dragleave", "drop"];
 
@@ -100,7 +101,7 @@ input.addEventListener("change", () => {
 // Dades a PHP
 form.addEventListener("submit", (e) => {
     e.prevDefault(); 
-    
+
     // obj DataTransfer
     const dataTransfer = new DataTransfer();
     files.forEach(file => {
