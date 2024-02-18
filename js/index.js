@@ -34,6 +34,8 @@ dropArea.addEventListener("drop", (event) => {
 });
 
 function showFiles() {
+    fileInPrevList.clear(); // limpiar els noms del fitxer que hi havia abans
+    preview.innerHTML = '';
     if (files.length > 0) {
         files.forEach((file, index) => {
             processFile(file, index);
@@ -81,7 +83,7 @@ function previewFile(file, fileURL, index) {
 // Aquesta funció eliminarà de l’array l’arxiu de la posició i.
 function removeBtn(i) {
     files.splice(i, 1);
-    document.querySelector(`#prevImg${i}`).innerHTML="";
+    document.querySelector(`#prevImg${i}`).remove();
     showFiles();
 }
 
@@ -90,7 +92,22 @@ button.addEventListener("click", (e) => {
     input.click();
 })
 
-input.addEventListener("change", (e) => { 
+input.addEventListener("change", () => { 
     files = files.concat(Array.from(input.files));
     showFiles();
 });
+
+// Dades a PHP
+form.addEventListener("submit", (e) => {
+    e.prevDefault(); 
+
+    // obj DataTransfer
+    const dataTransfer = new DataTransfer();
+
+    files.forEach(file => {
+        dataTransfer.items.add(file);
+    });
+
+    input.files = dataTransfer.files;
+    form.submit();
+})
