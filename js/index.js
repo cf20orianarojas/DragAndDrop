@@ -100,14 +100,12 @@ input.addEventListener("change", () => {
 // Dades a PHP
 form.addEventListener("submit", (e) => {
     e.prevDefault(); 
-
+    
     // obj DataTransfer
     const dataTransfer = new DataTransfer();
-
     files.forEach(file => {
         dataTransfer.items.add(file);
     });
-
     input.files = dataTransfer.files;
     form.submit();
 })
