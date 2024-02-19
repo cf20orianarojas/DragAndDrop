@@ -76,7 +76,7 @@ function previewFile(file, fileURL, index) {
                     <img src="${fileURL}"/>
                     <span>${file.name}</span>
                     <span onclick="removeBtn(${index})" class="material-symbols-outlined
-                    removeBtn">x</span>
+                    removeBtn">close</span>
                 </div>`;
     preview.innerHTML += prev;
 }
@@ -93,15 +93,17 @@ button.addEventListener("click", (e) => {
     input.click();
 })
 
-input.addEventListener("change", () => { 
+input.addEventListener("change", () => {
     files = files.concat(Array.from(input.files));
     showFiles();
+    form.submit();
 });
 
 // Dades a PHP
 form.addEventListener("submit", (e) => {
-    e.prevDefault(); 
-
+    console.log('submit')
+    e.preventDefault(); 
+    
     // obj DataTransfer
     const dataTransfer = new DataTransfer();
     files.forEach(file => {
