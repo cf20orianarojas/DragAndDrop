@@ -1,6 +1,7 @@
 body {
     display: grid;
     justify-content: center;
+    text-align: center;
     margin: 2em;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
